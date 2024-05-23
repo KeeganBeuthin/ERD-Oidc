@@ -1,11 +1,13 @@
+// support/configuration
+
 export default {
   clients: [
-    // {
-    //   client_id: 'oidcCLIENT',
-    //   client_secret: '...',
-    //   grant_types: ['refresh_token', 'authorization_code'],
-    //   redirect_uris: ['http://sso-client.dev/providers/7/open_id', 'http://sso-client.dev/providers/8/open_id'],
-    // }
+    {
+      client_id: "Erd-Application",
+      client_secret: 'sex',
+      grant_types: ['refresh_token', 'authorization_code'],
+      redirect_uris: ['http://localhost:3000/callback'],
+    }
   ],
   interactions: {
     url(ctx, interaction) { // eslint-disable-line no-unused-vars

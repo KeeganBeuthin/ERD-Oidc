@@ -12,13 +12,28 @@ import Provider from '../lib/index.js'; // from 'oidc-provider';
 import Account from './support/account.js';
 import configuration from './support/configuration.js';
 import routes from './routes/express.js';
+import cors from 'cors';
+
 
 const __dirname = dirname(import.meta.url);
 
-const { PORT = 3000, ISSUER = `http://localhost:${PORT}` } = process.env;
+const { PORT = 3001, ISSUER = `http://localhost:${PORT}/erd` } = process.env;
 configuration.findAccount = Account.findAccount;
 
 const app = express();
+
+
+const corsOptions = {
+  origin: 'http://localhost:3000',  
+  methods: ['GET', 'POST'],         
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,               
+  optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
+
+
 
 const directives = helmet.contentSecurityPolicy.getDefaultDirectives();
 delete directives['form-action'];
